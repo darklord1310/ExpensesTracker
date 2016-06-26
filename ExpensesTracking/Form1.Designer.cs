@@ -72,7 +72,7 @@
             this.AddButton.Location = new System.Drawing.Point(63, 503);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(124, 27);
-            this.AddButton.TabIndex = 3;
+            this.AddButton.TabIndex = 8;
             this.AddButton.Text = "Add To Expenses";
             this.AddButton.UseVisualStyleBackColor = true;
             this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
@@ -95,7 +95,7 @@
             this.dateTimePicker1.Location = new System.Drawing.Point(165, 141);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 5;
+            this.dateTimePicker1.TabIndex = 1;
             // 
             // label2
             // 
@@ -137,7 +137,7 @@
             this.mealTxt.Location = new System.Drawing.Point(203, 298);
             this.mealTxt.Name = "mealTxt";
             this.mealTxt.Size = new System.Drawing.Size(164, 20);
-            this.mealTxt.TabIndex = 13;
+            this.mealTxt.TabIndex = 4;
             // 
             // label7
             // 
@@ -155,7 +155,7 @@
             this.othersTxt.Location = new System.Drawing.Point(202, 399);
             this.othersTxt.Name = "othersTxt";
             this.othersTxt.Size = new System.Drawing.Size(164, 20);
-            this.othersTxt.TabIndex = 15;
+            this.othersTxt.TabIndex = 6;
             // 
             // comboBox1
             // 
@@ -165,7 +165,7 @@
             this.comboBox1.Location = new System.Drawing.Point(202, 175);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(163, 21);
-            this.comboBox1.TabIndex = 17;
+            this.comboBox1.TabIndex = 2;
             this.comboBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox1_DrawItem);
             // 
             // label8
@@ -203,7 +203,7 @@
             this.button1.Location = new System.Drawing.Point(211, 503);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(124, 27);
-            this.button1.TabIndex = 20;
+            this.button1.TabIndex = 9;
             this.button1.Text = "Edit Expenses";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -246,7 +246,7 @@
             // createTransportationDataToolStripMenuItem
             // 
             this.createTransportationDataToolStripMenuItem.Name = "createTransportationDataToolStripMenuItem";
-            this.createTransportationDataToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.createTransportationDataToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
             this.createTransportationDataToolStripMenuItem.Text = "Edit Transportation Data";
             this.createTransportationDataToolStripMenuItem.Click += new System.EventHandler(this.createTransportationDataToolStripMenuItem_Click);
             // 
@@ -300,7 +300,7 @@
             this.richTextBox3.Location = new System.Drawing.Point(202, 427);
             this.richTextBox3.Name = "richTextBox3";
             this.richTextBox3.Size = new System.Drawing.Size(163, 64);
-            this.richTextBox3.TabIndex = 26;
+            this.richTextBox3.TabIndex = 7;
             this.richTextBox3.Text = "";
             // 
             // label9
@@ -318,7 +318,7 @@
             this.richTextBox2.Location = new System.Drawing.Point(203, 325);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.Size = new System.Drawing.Size(163, 58);
-            this.richTextBox2.TabIndex = 24;
+            this.richTextBox2.TabIndex = 5;
             this.richTextBox2.Text = "";
             // 
             // label4
@@ -336,7 +336,7 @@
             this.richTextBox1.Location = new System.Drawing.Point(202, 204);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(163, 64);
-            this.richTextBox1.TabIndex = 22;
+            this.richTextBox1.TabIndex = 3;
             this.richTextBox1.Text = "";
             // 
             // pictureBox1
@@ -358,6 +358,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(374, 33);
             this.textBox1.TabIndex = 23;
+            this.textBox1.TabStop = false;
             this.textBox1.Text = "Monthly Expenses Chart";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 

@@ -18,6 +18,7 @@ namespace ExpensesTracking
         SQLiteConnection connection;
         private string filenameOnly;
         private string dir;
+        double expenses = 0.0;
 
         public DatabaseViewer()
         {
@@ -39,13 +40,18 @@ namespace ExpensesTracking
                     this.ShowDialog();
                 }
                 else
+                {
+                    totalexpenses.Text = "0";
                     this.Close();
+                }
+                   
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }    
         }
+
 
         private void openFileBrowser()
         {
@@ -87,6 +93,7 @@ namespace ExpensesTracking
                   combineMeal = meal + "\n\n" + mDetails;
                   combineOthers = others + "\n\n" + oDetails;
                   string[] row = new string[] { date, combineTransport, combineMeal, combineOthers };
+                  expenses += Convert.ToDouble(meal) + Convert.ToDouble(others) + Convert.ToDouble(transport);
                   dataGridView1.Rows.Add(row);
             }
         }
@@ -99,6 +106,7 @@ namespace ExpensesTracking
         // Delete button
         private void button1_Click(object sender, EventArgs e)
         {
+            /*
             this.Cursor = Cursors.WaitCursor;
             button1.Enabled = false;
             if (dataGridView1.Rows.Count > 0)       // if there is row in datagrid then only perform selected checking
@@ -125,12 +133,18 @@ namespace ExpensesTracking
             displayRecordFromDB(connection);
             this.Cursor = Cursors.Default;
             button1.Enabled = true;
+            */
         }
 
         // edit
         private void button2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void DatabaseViewer_Shown(object sender, EventArgs e)
+        {
+            totalexpenses.Text = expenses.ToString();
         }
     }
 }

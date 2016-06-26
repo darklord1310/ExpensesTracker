@@ -94,6 +94,7 @@ namespace ExpensesTracking
             comboBox1.DropDownClosed += comboBox1_DropDownClosed;
             fillComboBox();
             computeMonthlyChart(DateTime.Now.Month, DateTime.Now.Year);
+            clearAllTxtBox();
         }
 
         private void comboBox1_DropDownClosed(object sender, EventArgs e)
@@ -225,6 +226,15 @@ namespace ExpensesTracking
             }
         }
 
+        private void clearAllTxtBox()
+        {
+            mealTxt.Text = "0";
+            othersTxt.Text = "0";
+            richTextBox1.Text = "";
+            richTextBox2.Text = "";
+            richTextBox3.Text = "";
+        }
+
         private void AddButton_Click(object sender, EventArgs e)
         {
             try 
@@ -242,7 +252,7 @@ namespace ExpensesTracking
                     throw new CException("NotNumber", othersTxt.Name);
 
                 if (Convert.ToDouble(mealTxt.Text) < 0) { throw new CException("NegativeNumber", mealTxt.Name); } else { meal = Convert.ToDouble(mealTxt.Text); }
-                if (Convert.ToDouble(othersTxt.Text) < 0) { throw new CException("NegativeNumber", othersTxt.Name); } else { meal = Convert.ToDouble(othersTxt.Text); }
+                if (Convert.ToDouble(othersTxt.Text) < 0) { throw new CException("NegativeNumber", othersTxt.Name); } else { others = Convert.ToDouble(othersTxt.Text); }
                 transportDetails = richTextBox1.Text;
                 mealDetails = richTextBox2.Text;
                 othersDetails = richTextBox3.Text;
@@ -252,6 +262,7 @@ namespace ExpensesTracking
                 AddButton.Enabled = true;
                 this.Cursor = Cursors.Default;
                 computeMonthlyChart(DateTime.Now.Month, DateTime.Now.Year);
+                clearAllTxtBox();
             }
             catch (Exception ex)
             {
@@ -284,10 +295,7 @@ namespace ExpensesTracking
                     else if (txtName == "othersTxt")
                         MessageBox.Show("Others fees cannot be empty.");
                 }
-                   
             }
-
-
         }
 
 
@@ -313,14 +321,20 @@ namespace ExpensesTracking
                     tempTransport = Convert.ToDouble(reader["transportation"]) + transportation;
                     tempMeal = Convert.ToDouble(reader["meal"]) + meal;
                     tempOthers = Convert.ToDouble(reader["others"]) + others;
-                    if(transportDetails != "")
+                    if (transportDetails != "" && tempTransport != 0.0)
                         trDetails = reader["transportDetails"].ToString() + "\n" + transportDetails;
+                    else
+                        trDetails = "";
 
-                    if(mealDetails != "")
+                    if (mealDetails != "" && tempMeal != 0.0)
                         mDetails = reader["mealDetails"].ToString() + "\n" + mealDetails;
+                    else
+                        mDetails = "";
 
-                    if(othersDetails != "")
+                    if (othersDetails != "" && tempOthers != 0.0)
                         oDetails = reader["othersDetails"].ToString() + "\n" + othersDetails;
+                    else
+                        oDetails = "";
                 }
                 daily = "UPDATE dailyExpenses SET date = @date, transportation = @transportation , meal = @meal, others = @others, transportDetails = @transportDetails, mealDetails = @mealDetails, othersDetails = @othersDetails Where date = @itemToSearch";
                 SQLiteCommand command = new SQLiteCommand(daily, connection);
@@ -333,7 +347,6 @@ namespace ExpensesTracking
                 db.addDataToDailyDB(date, transportation, meal, others, transportDetails, mealDetails, othersDetails, command);
             }
             
-
             db.closeConnection(connection);
         }
 

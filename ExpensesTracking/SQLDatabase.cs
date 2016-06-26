@@ -118,9 +118,15 @@ namespace ExpensesTracking
             command.Parameters.AddWithValue("@transportation", transportation);
             command.Parameters.AddWithValue("@meal", meal);
             command.Parameters.AddWithValue("@others", others);
-            command.Parameters.AddWithValue("@transportDetails", transportDetails);
-            command.Parameters.AddWithValue("@mealDetails", mealDetails);
-            command.Parameters.AddWithValue("@othersDetails", othersDetails);
+
+            if(transportDetails != "")
+                command.Parameters.AddWithValue("@transportDetails", transportDetails);
+
+            if (mealDetails != "")
+                command.Parameters.AddWithValue("@mealDetails", mealDetails);
+
+            if (othersDetails != "")
+                command.Parameters.AddWithValue("@othersDetails", othersDetails);
 
             command.ExecuteNonQuery();
         }

@@ -45,7 +45,7 @@ namespace ExpensesTracking
                 description = desTxt.Text;
                 this.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -74,19 +74,20 @@ namespace ExpensesTracking
                     if (txtName == "faresTxt")
                         MessageBox.Show("Fares must be a number!");
                 }
-                else if(s == "NegativeNumber")
+                else if (s == "NegativeNumber")
                 {
                     if (txtName == "faresTxt")
                         MessageBox.Show("Fares cannot be negative number!");
                 }
-                else if(s == "Empty")
+                else if (s == "Empty")
                 {
                     if (txtName == "typeTxt")
                         MessageBox.Show("Type cannot be empty!");
                     else if (txtName == "faresTxt")
                         MessageBox.Show("Fares cannot be empty!");
                 }
-                   
+
             }
+        }
     }
 }
