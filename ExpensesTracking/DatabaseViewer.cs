@@ -78,6 +78,7 @@ namespace ExpensesTracking
         private void displayRecordFromDB(SQLiteConnection connection)
         {
             string date, transport, meal, others, trDetails, oDetails, mDetails, combineTransport, combineMeal, combineOthers;
+            double dailyExpenses;
             SQLiteCommand command = new SQLiteCommand("Select * from dailyExpenses", connection);
             SQLiteDataReader reader = command.ExecuteReader();
             while (reader.Read())
@@ -92,8 +93,9 @@ namespace ExpensesTracking
                   combineTransport = transport  + "\n\n" + trDetails;
                   combineMeal = meal + "\n\n" + mDetails;
                   combineOthers = others + "\n\n" + oDetails;
-                  string[] row = new string[] { date, combineTransport, combineMeal, combineOthers };
-                  expenses += Convert.ToDouble(meal) + Convert.ToDouble(others) + Convert.ToDouble(transport);
+                  dailyExpenses = Convert.ToDouble(meal) + Convert.ToDouble(others) + Convert.ToDouble(transport);
+                  string[] row = new string[] { date, combineTransport, combineMeal, combineOthers, dailyExpenses.ToString() };
+                  expenses += dailyExpenses;
                   dataGridView1.Rows.Add(row);
             }
         }

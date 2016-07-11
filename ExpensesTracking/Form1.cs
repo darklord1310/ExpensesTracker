@@ -243,6 +243,11 @@ namespace ExpensesTracking
                 transportation = transportationMode[comboBox1.SelectedIndex].fare;
 
                 if (mealTxt.Text == "")
+                    mealTxt.Text = "0";
+                if (othersTxt.Text == "")
+                    othersTxt.Text = "0";
+
+                if (mealTxt.Text == "")
                     throw new CException("Empty", mealTxt.Name);
                 else if(!mealTxt.Text.Any(x => !char.IsLetter(x)))
                     throw new CException("NotNumber", mealTxt.Name);
@@ -266,6 +271,7 @@ namespace ExpensesTracking
             }
             catch (Exception ex)
             {
+                MessageBox.Show("Error Occured! " + ex.Message);
                 AddButton.Enabled = true;
             }
         }
@@ -336,7 +342,7 @@ namespace ExpensesTracking
                     else
                         oDetails = "";
                 }
-                daily = "UPDATE dailyExpenses SET date = @date, transportation = @transportation , meal = @meal, others = @others, transportDetails = @transportDetails, mealDetails = @mealDetails, othersDetails = @othersDetails Where date = @itemToSearch";
+                daily = setUpdateDailyExpensesCommandAccordingly(transportDetails, mealDetails, othersDetails);
                 SQLiteCommand command = new SQLiteCommand(daily, connection);
                 db.updateDailyExpenses(command, date, date, tempTransport, tempMeal, tempOthers, trDetails, mDetails, oDetails);
             }
@@ -350,6 +356,21 @@ namespace ExpensesTracking
             db.closeConnection(connection);
         }
 
+
+        string setUpdateDailyExpensesCommandAccordingly(string transportDetails, string mealDetails, string othersDetails)
+        {
+            string basicCommand = "UPDATE dailyExpenses SET date = @date, transportation = @transportation , meal = @meal, others = @others";
+            if (transportDetails != "")
+                basicCommand += " , transportDetails = @transportDetails";
+            if (mealDetails != "")
+                basicCommand += " , mealDetails = @mealDetails";
+            if (othersDetails != "")
+                basicCommand += " , othersDetails = @othersDetails";
+
+            basicCommand += " Where date = @itemToSearch";
+
+            return basicCommand;
+        }
 
         // Generate the filename for daily expenses
         public string generateDailyFilename(int month, int year)
